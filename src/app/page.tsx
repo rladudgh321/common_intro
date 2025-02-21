@@ -1,5 +1,4 @@
-export default async function Home({isOpen}: {isOpen: boolean}) {
-  console.log('isOpen', isOpen);
+export default async function Home() {
   return (
         <div className='absolute top-0 left-0 right-0 py-4'>
           <div className="flex flex-col items-center">
