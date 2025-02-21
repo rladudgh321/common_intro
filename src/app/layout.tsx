@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Banner from "./shared/banner";
+import { Suspense } from "react";
+import Loading from "./shared/banner/loading";
+import Nav from "./shared/nav";
+import { clsx } from "clsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,10 +30,17 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={
+          clsx([geistSans.variable, geistMono.variable, 'antialiased'])}
       >
         <div>
+          <Suspense fallback={<Loading />}>
+            <Banner />
+          </Suspense>
+          <Nav />
+          <div className="relative -z-10">
             {children}
+          </div>
         </div>
       </body>
     </html>
